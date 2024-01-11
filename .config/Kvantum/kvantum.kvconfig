@@ -1,0 +1,5 @@
+[General]
+theme=Ant-Dark
+
+[Applications]
+Default=firefox
