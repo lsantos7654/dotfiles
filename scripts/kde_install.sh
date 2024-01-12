@@ -46,6 +46,14 @@ ninja -C build
 ninja -C build install
 cd -
 
+#rofi theme setup
+cd ~/Downloads
+git clone --depth=1 https://github.com/adi1090x/rofi.git
+cd rofi
+chmod +x setup.sh
+./setup.sh
+cd -
+
 #Ant-Dark install
 cd ~/Downloads
 git clone https://github.com/EliverLara/Ant.git
