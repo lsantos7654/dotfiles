@@ -1,4 +1,5 @@
 map to meta+a
 /home/santos/.config/rofi/launchers/type-2/launcher.sh
 
-
+map to meta+~
+/home/santos/.config/rofi/powermenu/type-2/powermenu.sh
