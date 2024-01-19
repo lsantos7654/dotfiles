@@ -18,6 +18,7 @@ sudo apt-get install -y spotify-client
 sudo apt install -y touchegg
 sudo apt-get install -y g++ libx11-dev libxext-dev qtbase5-dev libqt5svg5-dev libqt5x11extras5-dev libkf5windowsystem-dev qttools5-dev latte-dock
 sudo apt install -y qt5-style-kvantum qt5-style-kvantum-themes
+sudo apt install git cmake g++ gettext extra-cmake-modules qttools5-dev libkf5configwidgets-dev libkf5globalaccel-dev libkf5notifications-dev kwin-dev
 
 #toucheg config
 sudo rm -r ~/.config/touchegg
@@ -64,3 +65,15 @@ sudo cp -r ~/Downloads/Dark/plasma/look-and-feel/Ant-Dark/ /usr/share/plasma/loo
 sudo cp -r ~/Downloads/Dark/icons/Ant-Dark/ /usr/share/icons/
 sudo cp -r ~/Downloads/Dark/sddm/Ant-Dark/ /usr/share/sddm/themes/
 sudo cp -r ~/Downloads/Dark/aurorae/Ant-Dark/ ~/.local/share/aurorae/themes/
+cd -
+
+#Rounded Corners Install
+cd ~/Downloads
+git clone https://github.com/matinlotfali/KDE-Rounded-Corners
+cd KDE-Rounded-Corners
+mkdir build
+cd build
+cmake .. --install-prefix /usr
+make
+sudo make install
+cd -
