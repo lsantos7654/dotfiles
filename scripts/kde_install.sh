@@ -63,3 +63,4 @@ sudo cp -r ~/Downloads/Dark/plasma/desktoptheme/Ant-Dark/ /usr/share/plasma/desk
 sudo cp -r ~/Downloads/Dark/plasma/look-and-feel/Ant-Dark/ /usr/share/plasma/look-and-feel/
 sudo cp -r ~/Downloads/Dark/icons/Ant-Dark/ /usr/share/icons/
 sudo cp -r ~/Downloads/Dark/sddm/Ant-Dark/ /usr/share/sddm/themes/
+sudo cp -r ~/Downloads/Dark/aurorae/Ant-Dark/ ~/.local/share/aurorae/themes/
