@@ -3,3 +3,5 @@ map to meta+a
 
 map to meta+~
 /home/santos/.config/rofi/powermenu/type-2/powermenu.sh
+
+https://github.com/adi1090x/rofi

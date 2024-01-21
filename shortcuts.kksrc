@@ -150,10 +150,10 @@ Krohnkite: Grow Width=Meta+Shift+Right
 Krohnkite: Increase=
 Krohnkite: Left=
 Krohnkite: Monocle Layout=
-Krohnkite: Move Down/Next=
+Krohnkite: Move Down/Next=Ctrl+J
 Krohnkite: Move Left=
 Krohnkite: Move Right=
-Krohnkite: Move Up/Prev=
+Krohnkite: Move Up/Prev=Ctrl+K
 Krohnkite: Next Layout=
 Krohnkite: Previous Layout=
 Krohnkite: Quarter Layout=
@@ -311,7 +311,7 @@ Window to Screen 5=
 Window to Screen 6=
 Window to Screen 7=
 view_actual_size=Meta+0
-view_zoom_in=Meta++; Meta+=
+view_zoom_in=Meta+=; Meta++
 view_zoom_out=Meta+-
 
 [lattedock][Global Shortcuts]
@@ -366,6 +366,9 @@ show-barcode=
 show-on-mouse-pos=
 
 [launcher.sh-3.desktop][Global Shortcuts]
+_launch=Meta+A
+
+[launcher.sh-4.desktop][Global Shortcuts]
 _launch=Meta+A
 
 [launcher2.sh.desktop][Global Shortcuts]
@@ -434,6 +437,9 @@ stop current activity=
 switch to next activity=
 switch to previous activity=
 toggle do not disturb=
+
+[powermenu.sh.desktop][Global Shortcuts]
+_launch=Meta+`
 
 [systemsettings.desktop][Global Shortcuts]
 _launch=Tools

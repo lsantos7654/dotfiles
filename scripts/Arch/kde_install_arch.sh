@@ -1,24 +1,18 @@
 #!/bin/bash
 
-#spotify repo link
-curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo pacman -Syu
 
-#touchegg repo link
-sudo add-apt-repository ppa:touchegg/stable
+#spotify install
+sudo pacman -S spotify-launcher
 
-#papirus link
-sudo add-apt-repository ppa:papirus/papirus
+#touchegg install
+sudo pacman -S touchegg
+sudo systemctl enable touchegg.service
+sudo systemctl start touchegg
 
-sudo apt-get update
-
-#dependency install
-sudo apt-get install -y gcc make autoconf automake pkg-config flex bison libpango1.0-dev libpangocairo-1.0-0 libcairo2-dev libglib2.0-dev libgdk-pixbuf2.0-dev libstartup-notification0-dev libxkbcommon-dev libxkbcommon-x11-dev libxcb1-dev libxcb-xkb-dev libxcb-randr0-dev libxcb-xinerama0-dev meson ninja-build libxcb-util-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-cursor-dev
-sudo apt-get install -y spotify-client
-sudo apt install -y touchegg
-sudo apt-get install -y g++ libx11-dev libxext-dev qtbase5-dev libqt5svg5-dev libqt5x11extras5-dev libkf5windowsystem-dev qttools5-dev latte-dock
-sudo apt install -y qt5-style-kvantum qt5-style-kvantum-themes
-sudo apt install git cmake g++ gettext extra-cmake-modules qttools5-dev libkf5configwidgets-dev libkf5globalaccel-dev libkf5notifications-dev kwin-dev
+#KDE-Rounded-Corners dependency install
+sudo pacman -S git cmake extra-cmake-modules base-devel
+yay -S qt5-tools
 
 #toucheg config
 sudo rm -r ~/.config/touchegg
@@ -33,18 +27,12 @@ ln -s ~/.local/share/kwin/scripts/krohnkite/metadata.desktop ~/.local/share/kser
 cd -
 
 #latte-dock install
+sudo pacman -S latte-dock
 sudo rm -r ~/.config/latte/
-cp -r ./../.config/latte/ ~/.config/
+cp -r ./../../.config/latte/ ~/.config/
 
 #rofi install
-cp ../rofi/rofi-1.7.5.tar.gz ~/Downloads/
-cd ~/Downloads
-tar xvf rofi-1.7.5.tar.gz
-cd rofi-1.7.5
-meson setup build
-ninja -C build
-ninja -C build install
-cd -
+sudo pacman -S rofi
 
 #rofi theme setup
 cd ~/Downloads
