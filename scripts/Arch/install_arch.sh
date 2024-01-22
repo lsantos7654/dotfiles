@@ -16,7 +16,7 @@ chmod +x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
 #setup kitty
-cp -r ./../.config/kitty ~/.config/
+cp -r ./../../.config/kitty ~/.config/
 
 #setup .zshrc config
 cp ./../.zshrc ~/
