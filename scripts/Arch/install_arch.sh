@@ -2,9 +2,15 @@
 
 sudo pacman -Syu
 
-sudo pacman -S wget
+sudo pacman -S git base-devel wget unzip neofetch xclip vim kitty tldr fuse python3 npm zsh curl fzf p7zip nodejs eza
 
-sudo pacman -S neofetch xclip vim kitty tldr fuse python3 npm zsh curl fzf p7zip nodejs eza
+# yay install
+cd ~/Downloads
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd -
+
 yay -S autojump
 
 tldr -u
@@ -14,15 +20,16 @@ cd ~/Downloads
 wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 chmod +x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
+cd -
 
 #setup kitty
 cp -r ./../../.config/kitty ~/.config/
 
 #setup .zshrc config
-cp ./../.zshrc ~/
+cp ./../../.zshrc ~/
 
 #setup fonts
-sudo cp -r ./../Hack_Fonts /usr/share/fonts/ 
+sudo cp -r ./../../Hack_Fonts /usr/share/fonts/ 
 
 #install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
