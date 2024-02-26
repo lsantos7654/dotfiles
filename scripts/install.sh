@@ -9,7 +9,7 @@ echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable
 sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
 
 sudo apt update
-sudo apt install -y neofetch xclip vim kitty tldr fuse python3 python3.11-venv npm zsh curl autojump fzf gpg p7zip-full nodejs eza
+sudo apt install -y neofetch xclip vim tldr fuse python3 python3.11-venv npm zsh curl autojump fzf gpg p7zip-full nodejs eza
 sudo npm install -g typescript
 
 tldr -u
@@ -20,14 +20,8 @@ wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 chmod +x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
-#setup kitty
-cp -r ./../.config/kitty ~/.config/
-
 #setup .zshrc config
 cp ./../.zshrc ~/
-
-#setup fonts
-sudo cp -r ./../Hack_Fonts /usr/share/fonts/ 
 
 #install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

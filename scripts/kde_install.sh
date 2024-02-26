@@ -18,12 +18,17 @@ sudo apt-get install -y spotify-client
 sudo apt install -y touchegg
 sudo apt-get install -y g++ libx11-dev libxext-dev qtbase5-dev libqt5svg5-dev libqt5x11extras5-dev libkf5windowsystem-dev qttools5-dev latte-dock
 sudo apt install -y qt5-style-kvantum qt5-style-kvantum-themes
-sudo apt install git cmake g++ gettext extra-cmake-modules qttools5-dev libkf5configwidgets-dev libkf5globalaccel-dev libkf5notifications-dev kwin-dev
+sudo apt install kitty git cmake g++ gettext extra-cmake-modules qttools5-dev libkf5configwidgets-dev libkf5globalaccel-dev libkf5notifications-dev kwin-dev
 
 #toucheg config
 sudo rm -r ~/.config/touchegg
 sudo cp -r ./../.config/touchegg/ ~/.config/
 
+#setup kitty
+cp -r ./../.config/kitty ~/.config/
+
+#setup fonts
+sudo cp -r ./../Hack_Fonts /usr/share/fonts/ 
 
 #Krohnkite install
 git clone https://github.com/esjeon/krohnkite.git ~/Downloads/
