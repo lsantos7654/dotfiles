@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt update
-apt install -y git wget curl gpg ninja-build gettext cmake unzip 
+apt install -y git wget curl gpg
 
 mkdir -p /etc/apt/keyrings
 wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
@@ -9,14 +9,13 @@ echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable
 chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
 
 apt update
-apt install -y build-essential neofetch xclip vim tldr python3 python3.10-venv zsh autojump fzf p7zip-full nodejs eza npm
+apt install -y neofetch xclip tldr python3 python3.10-venv zsh autojump fzf p7zip-full nodejs eza npm
 
 npm install -g typescript
 
 tldr -u
 
 #setup nvim
-tar xvzf ./nvim-linux64.tar.gz
 mv ./nvim-linux64/bin/nvim /usr/local/bin/nvim
 
 #personal nvim config
