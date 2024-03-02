@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export ZSH="$HOME/.oh-my-zsh"
+source ~/Documents/dotfiles/scripts/docker/_config/docker_functions.bash
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -57,6 +58,31 @@ function in {
     fi
 }
 
+#Docker Completion
+function _docker_all() {
+    reply=($(docker ps -a --format '{{.Names}}'))
+}
+#Docker Completion
+function _docker_on() {
+    reply=($(docker ps --format '{{.Names}}'))
+}
+compctl -K _docker_all drm
+compctl -K _docker_on dkill
+compctl -K _docker_all drunning 
+compctl -K _docker_all dzsh
+
+function confirm() {
+    echo -n "$1 [y/N]: "
+    read response
+    case $response in
+        [yY][eE][sS]|[yY])
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
 
 #Define Widgets
 function newTmuxSessionFromFzf() {
@@ -90,9 +116,9 @@ alias  l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
-alias tl='tmux ls'
-alias ff='newTmuxSessionFromFzf'
-alias fd=fuzzycd
+alias tls='tmux ls'
+alias tcd='newTmuxSessionFromFzf'
+alias fcd=fuzzycd
 alias dc='docker compose'
 
 #Helpful Keybindings

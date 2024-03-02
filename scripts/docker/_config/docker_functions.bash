@@ -19,17 +19,6 @@ function color_echo
     echo -e "${1}${2}${NC}"
 }
 
-function confirm
-{
-    read -p "$1 [y/n] " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-	true && return
-    fi
-    false
-}
-
 # colors for echo
 export YELLOW='\033[0;33m'
 export RED='\033[0;31m'
@@ -60,31 +49,30 @@ function dls
     docker ps --filter "status=exited"
 }
 
-function dsh
+function dzsh
 {
-    # if [ "$#" -ne 1 ]; then
-    #     echo -e "Usage: dsh <container>"
-    # else
-    #     # Starts a session to a container
-    #     if ! drunning $1; then
-    #         docker restart $1
-    #     fi
-    #     docker exec -it --user "$(whoami)" $1 bash
-    # fi
-    bdai docker shell 
+    if [ "$#" -ne 1 ]; then
+        echo -e "Usage: dsh <container>"
+    else
+        # Starts a session to a container
+        if ! drunning $1; then
+            docker restart $1
+        fi
+        docker exec -it $1 zsh
+    fi
 }
 
 function drunning
 {
     # check if a container is running
-    if [ "$( docker container inspect -f '{{.State.Status}}' $1 )" == "running" ]; then
-        true && return
+    if [[ "$(docker container inspect -f '{{.State.Status}}' $1)" == "running" ]]; then
+        return 0
     else
-        false
+        return 1
     fi
 }
 
-function dils
+function dim
 {
     # List images
     color_echo "$LGRAY" "List of docker images:"
@@ -98,15 +86,12 @@ function dkill
         echo -e "Usage: dkill <container>"
     else
         if drunning $1; then
-            if confirm "Stop container $1? "; then
-                docker stop $1
-            fi
+            docker kill $1
         else
             echo -e "Container $1 is not running."
         fi
     fi
 }
-alias dstop="dkill"
 
 function drm
 {
@@ -114,9 +99,7 @@ function drm
     if [ "$#" -ne 1 ]; then
         echo -e "Usage: drm <container>"
     else
-        if confirm "Remove container $1? "; then
-            docker rm $1
-        fi
+        docker rm $1
     fi
 }
 

@@ -33,6 +33,19 @@ function newTmuxSessionFromFzf() {
     tmux new-session -c "$dir"
   fi
 }
+#Docker Completeion for bash
+# _dkill_complete() {
+#     local cur=${COMP_WORDS[COMP_CWORD]}
+#     local running_containers=$(docker ps --format '{{.Names}}')
+#     COMPREPLY=($(compgen -W "${running_containers}" -- ${cur}))
+# }
+# complete -F _dkill_complete dkill
+
+#Docker Completion
+_dkill_complete() {
+    reply=($(docker ps --format '{{.Names}}'))
+}
+compctl -K _dkill_complete dkill
 
 function fuzzycd() {
   local file=$(fzf --query="$1" +m)
