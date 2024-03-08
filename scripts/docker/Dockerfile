@@ -53,7 +53,5 @@ RUN git clone https://github.com/chrissicool/zsh-256color ~/.oh-my-zsh/custom/pl
 # Set up your workspace or any other custom setup you need
 
 RUN apt install unzip
-# RUN /opt/nvim-linux64/bin/nvim --headless
-# RUN /opt/nvim-linux64/bin/nvim --headless -c 'Lazy sync' -c 'quitall'
 RUN /opt/nvim-linux64/bin/nvim --headless -c 'Lazy sync' & sleep 30; kill $!
 

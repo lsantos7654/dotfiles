@@ -7,9 +7,10 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
+export PATH"$PATH:/opt/nvim-linux64/bin"
 export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.local/bin:$PATH
+export GOPATH=$HOME/go
 export BDAI=$HOME/Projects/bdai
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
