@@ -1,0 +1,14 @@
+{
+  "Back Pack Dynamics": true,
+  "Back Pack Sensing": false,
+  "Driver": true,
+  "Issue": "DMM-963",
+  "Packages": [
+    "bdai record",
+    "teleop spot hardware",
+    "bdai spot driver"
+  ],
+  "Realsense": true,
+  "Task": "tool insertion",
+  "Trial": false
+}
