@@ -88,6 +88,7 @@ alias fcd=fuzzycd
 alias dc='docker compose'
 alias dupdate=docker_update
 alias dstart=docker_start
+alias re='glow README.md'
 
 #Helpful Keybindings
 bindkey '^n' open_nvim
