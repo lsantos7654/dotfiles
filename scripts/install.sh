@@ -26,8 +26,8 @@ sudo mv nvim.appimage /usr/local/bin/nvim
 
 #setup .zshrc config
 rm ~/.zshrc
-cp ./../.zshrc ~/
-cp ./../.p10k.zsh ~/
+ln -s ~/Documents/dotfiles/ubuntu_specific/.zshrc ~/.zshrc
+ln -s ~/Documents/dotfiles/.p10k.zsh ~/.p10k.zsh
 
 chsh -s $(which zsh)
 
