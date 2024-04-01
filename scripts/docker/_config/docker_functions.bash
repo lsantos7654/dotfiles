@@ -14,9 +14,8 @@
 # container's ID hash.
 
 #### General utilities
-function color_echo
-{
-    echo -e "${1}${2}${NC}"
+function color_echo {
+	echo -e "${1}${2}${NC}"
 }
 
 # colors for echo
@@ -37,83 +36,75 @@ export NC='\033[0m' # No Color
 export BOLD='\033[1;0m'
 export NORMAL='\033[0;0m'
 
-
 #### Docker utilities ####
-function dls
-{
-    # Lists active and stopped containers
-    color_echo "$LBLUE" "Active docker containers:"
-    docker container ls
-    echo -e ""
-    color_echo "$LYELLOW" "Stopped docker containers:"
-    docker ps --filter "status=exited"
+function dls {
+	# Lists active and stopped containers
+	color_echo "$LBLUE" "Active docker containers:"
+	docker container ls
+	echo -e ""
+	color_echo "$LYELLOW" "Stopped docker containers:"
+	docker ps --filter "status=exited"
 }
 
-function dzsh
-{
-    if [ "$#" -ne 1 ]; then
-        echo -e "Usage: dsh <container>"
-    else
-        # Starts a session to a container
-        if ! drunning $1; then
-            docker restart $1
-        fi
-        docker exec -it $1 zsh
-    fi
+function dzsh {
+	if [ "$#" -ne 1 ]; then
+		echo -e "Usage: dsh <container>"
+	else
+		# Starts a session to a container
+		if ! drunning $1; then
+			docker restart $1
+		fi
+		# docker exec -it $1 zsh
+		docker exec -w /workspaces/bdai -it --user $USER $1 /usr/bin/zsh
+	fi
 }
 
-function drunning
-{
-    # check if a container is running
-    if [[ "$(docker container inspect -f '{{.State.Status}}' $1)" == "running" ]]; then
-        return 0
-    else
-        return 1
-    fi
+function drunning {
+	# check if a container is running
+	if [[ "$(docker container inspect -f '{{.State.Status}}' $1)" == "running" ]]; then
+		return 0
+	else
+		return 1
+	fi
 }
 
-function dim
-{
-    # List images
-    color_echo "$LGRAY" "List of docker images:"
-    docker images
+function dim {
+	# List images
+	color_echo "$LGRAY" "List of docker images:"
+	docker images
 }
 
-function dkill
-{
-    # stop a container
-    if [ "$#" -ne 1 ]; then
-        echo -e "Usage: dkill <container>"
-    else
-        if drunning $1; then
-            docker kill $1
-        else
-            echo -e "Container $1 is not running."
-        fi
-    fi
+function dkill {
+	# stop a container
+	if [ "$#" -ne 1 ]; then
+		echo -e "Usage: dkill <container>"
+	else
+		if drunning $1; then
+			docker kill $1
+		else
+			echo -e "Container $1 is not running."
+		fi
+	fi
 }
 
-function drm
-{
-    # remove a container
-    if [ "$#" -ne 1 ]; then
-        echo -e "Usage: drm <container>"
-    else
-        docker rm $1
-    fi
+function drm {
+	# remove a container
+	if [ "$#" -ne 1 ]; then
+		echo -e "Usage: drm <container>"
+	else
+		docker rm $1
+	fi
 }
 
-
-function dcommit
-{
-    # creates a new image from a container’s changes
-    if [ "$#" -ne 2 ]; then
-        echo -e "Usage: dcommit <container> <image_name>"
-    else
-        if ! drunning $1; then
-            docker commit $1 $2
-        else
-            echo -e "Unable to commit. The container $1 is still running. Stop it first."
-        fi
-    fi
+function dcommit {
+	# creates a new image from a container’s changes
+	if [ "$#" -ne 2 ]; then
+		echo -e "Usage: dcommit <container> <image_name>"
+	else
+		if ! drunning $1; then
+			docker commit $1 $2
+		else
+			echo -e "Unable to commit. The container $1 is still running. Stop it first."
+		fi
+	fi
 }

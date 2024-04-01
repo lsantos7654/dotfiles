@@ -98,3 +98,5 @@ bindkey "^p" clear_screen
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(zoxide init --cmd cd zsh)"
+bdcd() { cd "$(bdai cd "$@")" ; }
+alias bdai_auth_gcp='gcloud auth login && gcloud auth application-default login'
