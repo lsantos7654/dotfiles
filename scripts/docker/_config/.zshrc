@@ -7,11 +7,10 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$PATH:/usr/local/go/bin
-export PATH"$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.local/bin:$PATH
 export GOPATH=$HOME/go
-export BDAI=$HOME/Projects/bdai
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -25,28 +24,6 @@ plugins=(
   fzf
 )
 source $ZSH/oh-my-zsh.sh
-
-#Define Widgets
-function newTmuxSessionFromFzf() {
-  local file=$(fzf --query="$1" +m -e)
-  if [ -n "$file" ]; then
-    local dir=$(dirname "$file")
-    tmux new-session -c "$dir"
-  fi
-}
-#Docker Completeion for bash
-# _dkill_complete() {
-#     local cur=${COMP_WORDS[COMP_CWORD]}
-#     local running_containers=$(docker ps --format '{{.Names}}')
-#     COMPREPLY=($(compgen -W "${running_containers}" -- ${cur}))
-# }
-# complete -F _dkill_complete dkill
-
-#Docker Completion
-_dkill_complete() {
-    reply=($(docker ps --format '{{.Names}}'))
-}
-compctl -K _dkill_complete dkill
 
 function fuzzycd() {
   local file=$(fzf --query="$1" +m)
@@ -71,10 +48,8 @@ alias  l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
-alias tl='tmux ls'
-alias ff='newTmuxSessionFromFzf'
-alias fd=fuzzycd
-alias dc='docker compose'
+alias fcd=fuzzycd
+alias re='glow README.md'
 
 #Helpful Keybindings
 bindkey '^n' open_nvim

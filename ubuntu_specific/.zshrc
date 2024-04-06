@@ -49,6 +49,13 @@ function newTmuxSessionFromFzf() {
   fi
 }
 
+# Improved autocomplete tmux sessions for tkill
+function _tmux_sessions() {
+    sessions=("${(@f)$(tmux list-sessions -F '#{session_name}')}")
+    _wanted sessions expl 'tmux sessions' compadd -a sessions
+}
+compdef _tmux_sessions tkill
+
 function fuzzycd() {
   local file=$(fzf --query="$1" +m)
   if [ -n "$file" ]; then
@@ -83,6 +90,7 @@ alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias tls='tmux ls'
+alias tkill='tmux kill-session -t '
 alias tcd='newTmuxSessionFromFzf'
 alias fcd=fuzzycd
 alias dc='docker compose'
