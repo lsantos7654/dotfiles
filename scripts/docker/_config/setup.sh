@@ -22,6 +22,9 @@ curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | 
 sudo ln -s /_config/nvim-linux64/bin/nvim /usr/local/bin/nvim 
 sudo chmod +x /usr/local/bin/nvim
 
+#fzf dependency?
+sudo cp ./key-bindings.zsh /usr/share/doc/fzf/examples/
+
 #personal nvim config
 git clone https://github.com/lsantos7654/NvChad.git ~/.config/nvim
 
@@ -30,11 +33,13 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 #setup .zshrc config
 rm ~/.zshrc
-cp /_config/.zshrc ~/
-cp /_config/.p10k.zsh ~/
+ln -s /_config/.zshrc ~/
+ln -s /_config/.p10k.zsh ~/
 
 #install zsh plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone https://github.com/chrissicool/zsh-256color ~/.oh-my-zsh/custom/plugins/zsh-256color
+
+zsh

@@ -12,6 +12,8 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.local/bin:$PATH
 export GOPATH=$HOME/go
 
+source /opt/ros/humble/setup.zsh
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # List of plugins used

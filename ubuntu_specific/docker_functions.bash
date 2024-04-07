@@ -55,7 +55,7 @@ function dzsh {
 			docker restart $1
 		fi
 		# docker exec -it $1 zsh
-		docker exec -it $1 /usr/bin/zsh
+		docker exec -w /workspaces/bdai -it --user $USER $1 /usr/bin/zsh
 	fi
 }
 
