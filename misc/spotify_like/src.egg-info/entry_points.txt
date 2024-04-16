@@ -1,0 +1,2 @@
+[console_scripts]
+spotify_like = src.main:like_current_song
