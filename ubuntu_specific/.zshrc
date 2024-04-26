@@ -11,9 +11,11 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.local/bin:$PATH
 export BDAI=$HOME/projects/bdai
-source ~/Documents/dotfiles/scripts/docker/_config/docker_functions.bash
+source ~/Documents/dotfiles/ubuntu_specific/docker_functions.bash
+# source ~/Documents/dotfiles/scripts/docker/_config/docker_functions.bash
 
 export ROS_DOMAIN_ID=30
+export POWERLEVEL9K_COMMAND_EXECUTION_TIME=true
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -27,6 +29,15 @@ plugins=(
   fzf
 )
 source $ZSH/oh-my-zsh.sh
+
+function bdai() {
+  # $BDAI/src/bdai/cli/commands/bdai_cmd.py "$@"
+  # /workspaces/bdai/core/bdai_cli/src/bdai_cli/commands
+  $BDAI/core/bdai_cli/src/bdai_cli/commands/bdai_cmd.py "$@"
+  # source $BDAI/projects/_config/misc/setup.zsh 
+  # eval "$(register-python-argcomplete3 ros2)"
+  # eval "$(register-python-argcomplete3 colcon)"
+}
 
 #Docker Completion
 function _docker_all() {
@@ -57,7 +68,7 @@ function _tmux_sessions() {
 compdef _tmux_sessions tkill
 
 function fuzzycd() {
-  local file=$(fzf --query="$1" +m)
+  local file=$(find . -type f | fzf --query="$1" +m)
   if [ -n "$file" ]; then
     cd "$(dirname "$file")" || return
   fi
@@ -89,6 +100,7 @@ alias  l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
+alias lt='tree -h --du ./'
 alias tls='tmux ls'
 alias tkill='tmux kill-session -t '
 alias tcd='newTmuxSessionFromFzf'
