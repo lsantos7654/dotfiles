@@ -14,6 +14,10 @@ export BDAI=$HOME/projects/bdai
 source ~/Documents/dotfiles/ubuntu_specific/docker_functions.bash
 # source ~/Documents/dotfiles/scripts/docker/_config/docker_functions.bash
 
+export SPOTIPY_CLIENT_ID='ee5a68fb8c39415e989da683f6faeaec'
+export SPOTIPY_CLIENT_SECRET='20669c7a756e4eb399d032c4deb9a9eb'
+export SPOTIPY_REDIRECT_URI='http://localhost:8888/callback'
+
 export ROS_DOMAIN_ID=30
 export POWERLEVEL9K_COMMAND_EXECUTION_TIME=true
 
@@ -51,15 +55,6 @@ compctl -K _docker_on dkill
 compctl -K _docker_all drunning 
 compctl -K _docker_all dzsh
 
-#Define Widgets
-function newTmuxSessionFromFzf() {
-  local file=$(fzf --query="$1" +m -e)
-  if [ -n "$file" ]; then
-    local dir=$(dirname "$file")
-    tmux new-session -c "$dir"
-  fi
-}
-
 # Improved autocomplete tmux sessions for tkill
 function _tmux_sessions() {
     sessions=("${(@f)$(tmux list-sessions -F '#{session_name}')}")
@@ -79,16 +74,6 @@ function open_nvim() {
 }
 zle -N open_nvim
 
-function docker_update() {
-  /home/lsantos/projects/docker/setup.sh
-}
-zle -N docker_update
-
-function docker_start() {
-  bdai docker start -i ghcr.io/bdaiinstitute/bdaii_ros2_humble_custom:main
-}
-zle -N docker_start
-
 function clear_screen() {
   clear
   zle reset-prompt
@@ -98,17 +83,20 @@ zle -N clear_screen
 # Helpful aliases
 alias  l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
-alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
+alias la='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='tree -h --du ./'
 alias tls='tmux ls'
 alias tkill='tmux kill-session -t '
-alias tcd='newTmuxSessionFromFzf'
 alias fcd=fuzzycd
-alias dc='docker compose'
-alias dupdate=docker_update
-alias dstart=docker_start
 alias re='glow README.md'
+
+alias dstart='docker run -it \
+-e DISPLAY=$DISPLAY \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+--volume /home/santos/project/sandbox:/workspace/ --volume /home/santos/Documents/dotfiles/scripts/docker/_config/:/_config \
+--name ros3 \
+custom-ros-humble-desktop2:latest'
 
 #Helpful Keybindings
 bindkey '^n' open_nvim

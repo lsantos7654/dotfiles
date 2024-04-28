@@ -1,5 +1,3 @@
-# Copyright [2023] Boston Dynamics AI Institute, Inc.
-#
 # Quick overview:
 # - dls: lists active & stopped containers
 # - dils: list images
@@ -38,12 +36,17 @@ export NORMAL='\033[0;0m'
 
 #### Docker utilities ####
 function dls {
-	# Lists active and stopped containers
+	# Function to colorize output, assuming 'color_echo' is defined elsewhere
 	color_echo "$LBLUE" "Active docker containers:"
 	docker container ls
 	echo -e ""
+
 	color_echo "$LYELLOW" "Stopped docker containers:"
 	docker ps --filter "status=exited"
+	echo -e ""
+
+	color_echo "$RED" "Other docker containers:"
+	docker ps --filter "status=created" --filter "status=paused" --filter "status=restarting"
 }
 
 function dzsh {
@@ -54,8 +57,8 @@ function dzsh {
 		if ! drunning $1; then
 			docker restart $1
 		fi
-		# docker exec -it $1 zsh
-		docker exec -it $1 /usr/bin/zsh
+		# docker exec -it $1 /usr/bin/zsh
+		docker exec -it -u $(whoami) $1 /usr/bin/zsh
 	fi
 }
 

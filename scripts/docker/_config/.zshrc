@@ -13,6 +13,10 @@ export PATH=$HOME/.local/bin:$PATH
 export GOPATH=$HOME/go
 
 source /opt/ros/humble/setup.zsh
+source /opt/ros/humble/local_setup.zsh
+# argcomplete for ros2 & colcon
+eval "$(register-python-argcomplete3 ros2)"
+eval "$(register-python-argcomplete3 colcon)"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
