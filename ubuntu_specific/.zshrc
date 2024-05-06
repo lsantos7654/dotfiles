@@ -88,6 +88,7 @@ alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='tree -h --du ./'
 alias tls='tmux ls'
 alias tkill='tmux kill-session -t '
+alias n='nvim'
 alias fcd=fuzzycd
 alias re='glow README.md'
 
