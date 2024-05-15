@@ -87,6 +87,7 @@ alias la='eza -lha --icons=auto --sort=name --group-directories-first' # long li
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='tree -h --du ./'
 alias tls='tmux ls'
+alias n='nvim'
 alias tkill='tmux kill-session -t '
 alias n='nvim'
 alias fcd=fuzzycd
