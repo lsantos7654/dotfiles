@@ -92,6 +92,7 @@ alias tkill='tmux kill-session -t '
 alias n='nvim'
 alias fcd=fuzzycd
 alias re='glow README.md'
+alias cpr='rsync --recursive --progress'
 
 alias dstart='docker run -it \
 -e DISPLAY=$DISPLAY \
