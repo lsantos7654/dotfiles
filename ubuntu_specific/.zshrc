@@ -11,6 +11,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.local/bin:$PATH
 export BDAI=$HOME/projects/bdai
+export EDITOR=nvim
 source ~/Documents/dotfiles/ubuntu_specific/docker_functions.bash
 # source ~/Documents/dotfiles/scripts/docker/_config/docker_functions.bash
 

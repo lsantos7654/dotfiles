@@ -1,0 +1,5 @@
+# Insert your preferred key mappings here.
+
+map <a-H> previousTab
+map <a-L> nextTab
+map <a-c> run-javascript document.body.click()
