@@ -36,8 +36,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 function bdai() {
-  # $BDAI/src/bdai/cli/commands/bdai_cmd.py "$@"
-  # /workspaces/bdai/core/bdai_cli/src/bdai_cli/commands
   $BDAI/core/bdai_cli/src/bdai_cli/commands/bdai_cmd.py "$@"
   # source $BDAI/projects/_config/misc/setup.zsh 
   # eval "$(register-python-argcomplete3 ros2)"
@@ -70,6 +68,30 @@ function fuzzycd() {
   fi
 }
 
+# Graphite Completion
+_gt_yargs_completions()
+{
+    local cur_word args type_list
+
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    args=("${COMP_WORDS[@]}")
+
+    # ask yargs to generate completions.
+    type_list=$(gt --get-yargs-completions "${args[@]}")
+
+    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
+
+    # if no match was found, fall back to filename completion
+    if [ ${#COMPREPLY[@]} -eq 0 ]; then
+      COMPREPLY=()
+    fi
+
+    return 0
+}
+complete -o bashdefault -o default -F _gt_yargs_completions gt
+
+#Functions
+
 function open_nvim() {
   nvim
 }
@@ -90,10 +112,10 @@ alias lt='tree -h --du ./'
 alias tls='tmux ls'
 alias n='nvim'
 alias tkill='tmux kill-session -t '
-alias n='nvim'
 alias fcd=fuzzycd
 alias re='glow README.md'
 alias cpr='rsync --recursive --progress'
+alias cat=batcat --paging=never
 
 alias dstart='docker run -it \
 -e DISPLAY=$DISPLAY \
