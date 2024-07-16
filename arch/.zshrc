@@ -98,6 +98,22 @@ function command_not_found_handler {
     return 127
 }
 
+# Detect the AUR wrapper
+if pacman -Qi yay &>/dev/null ; then
+  aurhelper="yay"
+elif pacman -Qi paru &>/dev/null ; then
+  aurhelper="paru"
+fi
+
+function in {
+  local pkg="$1"
+  if pacman -Si "$pkg" &>/dev/null ; then
+    sudo pacman -S "$pkg"
+  else 
+    "$aurhelper" -S "$pkg"
+  fi
+}
+
 # Print workspace file
 function pwd_with_file() {
     current_dir=$(pwd)
@@ -106,21 +122,6 @@ function pwd_with_file() {
 }
 zle -N pwd_with_file
 
-# Detect the AUR wrapper
-if pacman -Qi yay &>/dev/null ; then
-   aurhelper="yay"
-elif pacman -Qi paru &>/dev/null ; then
-   aurhelper="paru"
-fi
-
-function in {
-    local pkg="$1"
-    if pacman -Si "$pkg" &>/dev/null ; then
-        sudo pacman -S "$pkg"
-    else 
-        "$aurhelper" -S "$pkg"
-    fi
-}
 
 function open_nvim() {
   nvim
@@ -133,6 +134,88 @@ function clear_screen() {
 }
 zle -N clear_screen
 
+function follow_link() {
+  builtin cd "$(dirname "$(readlink -f "$1")")"
+}
+zle -N follow_link
+
+function gcloud_start() {
+  gcloud compute instances start $1 --zone $2
+}
+zle -N gcloud_start
+
+function gcloud_stop() {
+  gcloud compute instances stop $1 --zone $2
+}
+zle -N gcloud_stop
+
+function gcloud_copy() {
+  # Get the absolute path of the local file
+  local full_path
+  full_path=$(realpath "$3")
+
+ # Get the base name of the file or directory
+  local base_name
+  base_name=$(basename "$3")
+  
+  
+  # Execute the command
+  gcloud compute scp --recurse "$full_path" "lsantos_theaiinstitute_com@$1:/home/lsantos_theaiinstitute_com/projects/bdai/recordings/$base_name" --zone="$2" 
+}
+
+function gcloud_enter() {
+  gcloud compute ssh $1 --ssh-flag="-X" --ssh-flag="-L 8085:localhost:8085" --project=engineering-380817 --zone=$2
+}
+zle -N gcloud_enter
+
+_gcloud_completions() {
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments -C \
+    "1:instances:($(gcloud compute instances list --format='value(name)'))" \
+    "2:zones:($(gcloud compute zones list --format='value(name)'))" \
+    "3:files:_files" \
+}
+
+compdef _gcloud_completions gcloud_start
+compdef _gcloud_completions gcloud_stop
+compdef _gcloud_completions gcloud_enter
+compdef _gcloud_completions gcloud_copy
+
+function bat_tail(){
+  local lines=${1:-10}
+  local file
+  if [[ -f $1 ]]; then
+    file=$1
+    lines=10
+  else
+    file=$2
+  fi
+  batcat --line-range $(expr $(wc -l < "$file") - $lines): "$file"
+}
+zle -N bat_tail
+
+# Function to run a Docker container with full paths for input and output directories
+function docker_script() {
+  local input_dir=$(realpath "$1")
+  local output_dir=$(realpath "$2")
+  local image="$3"
+
+  docker run --rm -d -v "$input_dir:/input" -v "$output_dir:/output" "$image"
+}
+_docker_script_completions() {
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments -C \
+    "1:files:_files" \
+    "2:files:_files" \
+    "3:zones:($(docker images --format \"{{.Repository}}:{{.Tag}}\"))"
+}
+compdef _docker_script_completions docker_script
+zle -N docker_script
+
 # Helpful aliases
 alias  l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
@@ -142,10 +225,19 @@ alias lt='tree -h --du ./'
 alias tls='tmux ls'
 alias n='nvim'
 alias tkill='tmux kill-session -t '
-alias fcd=fuzzycd
 alias re='glow README.md'
 alias cpr='rsync --recursive --progress'
+alias gls='gcloud compute instances list | grep lsantos'
 alias bat='bat --paging=never'
+alias ipa="ip -c a"
+alias gstart=gcloud_start
+alias gstop=gcloud_stop
+alias gzsh=gcloud_enter
+alias gcp=gcloud_copy
+alias fcd=fuzzycd
+alias cdl=follow_link
+alias tail=bat_tail
+alias dscript=docker_script
 alias pwf=pwd_with_file 
 
 alias dstart='docker run -it \
