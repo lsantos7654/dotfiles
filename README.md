@@ -3,6 +3,9 @@
 # Ubuntu Install
 
 sudo apt install kubuntu-desktop
+sudo add-apt-repository ppa:kubuntu-ppa/ppa
+sudo add-apt-repository ppa:kubuntu-ppa/backports
+sudo apt update && sudo apt full-upgrade -y
 
 ./scripts/install.sh
 
