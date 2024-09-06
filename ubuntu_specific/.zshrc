@@ -116,6 +116,7 @@ alias fcd=fuzzycd
 alias re='glow README.md'
 alias cpr='rsync --recursive --progress'
 alias cat=batcat --paging=never
+alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glmark2'
 
 alias dstart='docker run -it \
 -e DISPLAY=$DISPLAY \
