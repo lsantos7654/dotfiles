@@ -8,8 +8,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR=nvim
-source ~/Documents/dotfiles/ubuntu/docker_functions.bash
-# source ~/Documents/dotfiles/scripts/docker/_config/docker_functions.bash
+source ~/Documents/dotfiles/ubuntu_specific/docker_functions.bash
 
 export SPOTIPY_CLIENT_ID='ee5a68fb8c39415e989da683f6faeaec'
 export SPOTIPY_CLIENT_SECRET='20669c7a756e4eb399d032c4deb9a9eb'
