@@ -7,6 +7,9 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$HOME/.local/bin:$PATH
+export PATH="$PATH:$HOME/.luarocks/bin"
+export LUA_PATH="$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua;$LUA_PATH"
+export LUA_CPATH="$HOME/.luarocks/lib/lua/5.1/?.so;$LUA_CPATH"
 export EDITOR=nvim
 source ~/Documents/dotfiles/ubuntu_specific/docker_functions.bash
 
@@ -123,7 +126,7 @@ zle -N pwd_with_file
 
 
 function open_nvim() {
-  nvim
+  nvim .
 }
 zle -N open_nvim
 
@@ -238,6 +241,7 @@ alias cdl=follow_link
 alias tail=bat_tail
 alias dscript=docker_script
 alias pwf=pwd_with_file 
+alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glmark2'
 
 alias dstart='docker run -it \
 -e DISPLAY=$DISPLAY \
