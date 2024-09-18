@@ -241,7 +241,7 @@ alias cdl=follow_link
 alias tail=bat_tail
 alias dscript=docker_script
 alias pwf=pwd_with_file 
-alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glmark2'
+alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
 
 alias dstart='docker run -it \
 -e DISPLAY=$DISPLAY \
@@ -259,8 +259,7 @@ bindkey "^p" clear_screen
 
 eval "$(zoxide init --cmd cd zsh)"
 bdcd() { cd "$(bdai cd "$@")" ; }
-alias bdai_auth_gcp='gcloud auth login && gcloud auth application-default login'
 
-if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	exec Hyprland
-fi
+# if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+# 	exec Hyprland
+# fi
