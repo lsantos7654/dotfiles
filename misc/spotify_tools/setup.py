@@ -7,6 +7,8 @@ setup(
     package_dir={"": "src"},
     install_requires=[
         "spotipy",
+        "dbus-python",
+        "PyGObject",
     ],
     entry_points={
         "console_scripts": [
@@ -15,6 +17,7 @@ setup(
             "spotify-play-pause=spotify_control.play_pause:main",
             "spotify-volume-up=spotify_control.volume_up:main",
             "spotify-volume-down=spotify_control.volume_down:main",
+            "spotify-mpris=spotify_control.spotify_mpris:main",
         ],
     },
 )

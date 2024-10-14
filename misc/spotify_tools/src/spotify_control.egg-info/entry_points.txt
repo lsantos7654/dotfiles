@@ -1,4 +1,5 @@
 [console_scripts]
+spotify-mpris = spotify_control.spotify_mpris:main
 spotify-next = spotify_control.next_song:main
 spotify-play-pause = spotify_control.play_pause:main
 spotify-previous = spotify_control.previous_song:main
