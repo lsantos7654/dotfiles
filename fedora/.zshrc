@@ -18,6 +18,10 @@ export SPOTIPY_REDIRECT_URI='http://localhost:8888/callback'
 export ROS_DOMAIN_ID=30
 export POWERLEVEL9K_COMMAND_EXECUTION_TIME=true
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # List of plugins used
@@ -198,7 +202,8 @@ alias la='eza -lha --icons=auto --sort=name --group-directories-first' # long li
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='tree -h --du ./'
 alias tls='tmux ls'
-alias n='nvim'
+alias wlt='watch tree -h --du ./'
+alias wlta='watch tree -h --du -a ./'
 alias tkill='tmux kill-session -t '
 alias re='glow README.md'
 alias cpr='rsync --recursive --progress'
@@ -219,6 +224,7 @@ alias kls='jupyter kernelspec list'
 alias kstart=start_kernel
 alias knew=create_kernel
 alias krm=delete_kernel
+alias gpull='git stash && git pull && git stash pop'
 
 #Helpful Keybindings
 bindkey '^n' open_nvim
@@ -235,7 +241,3 @@ bdcd() { cd "$(bdai cd "$@")" ; }
 # if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 # 	exec Hyprland
 # fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
