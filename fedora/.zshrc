@@ -1,6 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -34,7 +31,11 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-#Docker Completion
+############
+#Completion#
+############
+
+#Docker
 function _docker_all() {
     reply=($(docker ps -a --format '{{.Names}}'))
 }
@@ -46,23 +47,53 @@ compctl -K _docker_on dkill
 compctl -K _docker_all drunning 
 compctl -K _docker_all dzsh
 
-# Improved autocomplete tmux sessions for tkill
-function _tmux_sessions() {
-    sessions=("${(@f)$(tmux list-sessions -F '#{session_name}')}")
-    _wanted sessions expl 'tmux sessions' compadd -a sessions
+#Jupyter
+function _kernel_completions() {
+	reply=($(jupyter kernelspec list | grep -v "Available" | awk '{print $1}'))
 }
-compdef _tmux_sessions tkill
+compctl -K _kernel_completions start_kernel
+compctl -K _kernel_completions delete_kernel
 
+#gcloud
+_gcloud_completions() {
+  local curcontext="$curcontext" state line
+  typeset -A opt_args
+
+  _arguments -C \
+    "1:instances:($(gcloud compute instances list --format='value(name)'))" \
+    "2:zones:($(gcloud compute zones list --format='value(name)'))" \
+    "3:files:_files" \
+}
+
+compdef _gcloud_completions gcloud_start
+compdef _gcloud_completions gcloud_stop
+compdef _gcloud_completions gcloud_enter
+compdef _gcloud_completions gcloud_copy
+
+###########
+#Functions#
+###########
+
+#Misc
 function fuzzycd() {
-  local file=$(find . -type f | fzf --query="$1" +m)
-  if [ -n "$file" ]; then
-    cd "$(dirname "$file")" || return
-  fi
+	local file=$(find . -type f | fzf --query="$1" +m)
+	if [ -n "$file" ]; then
+		cd "$(dirname "$file")" || return
+	fi
 }
+function bat_tail(){
+  local lines=${1:-10}
+  local file
+  if [[ -f $1 ]]; then
+    file=$1
+    lines=10
+  else
+    file=$2
+  fi
+  batcat --line-range $(expr $(wc -l < "$file") - $lines): "$file"
+}
+zle -N bat_tail
 
-#Functions
-
-# Print workspace file
 function pwd_with_file() {
     current_dir=$(pwd)
     current_file=$(basename "$1")
@@ -70,6 +101,28 @@ function pwd_with_file() {
 }
 zle -N pwd_with_file
 
+function create_kernel() {
+    if [ -z "$1" ]; then
+        echo "Please specify a kernel name"
+        return 1
+    fi
+	python -m ipykernel install --user --name=$1
+}
+zle -N create_kernel
+
+function start_kernel() {
+	jupyter kernel --kernel=$1
+}
+zle -N start_kernel
+
+function delete_kernel() {
+    if [ -z "$1" ]; then
+        echo "Please specify a kernel to delete"
+        return 1
+    fi
+    jupyter kernelspec uninstall "$1" -f
+}
+zle -N delete_kernel
 
 function open_nvim() {
   nvim .
@@ -116,33 +169,7 @@ function gcloud_enter() {
 }
 zle -N gcloud_enter
 
-_gcloud_completions() {
-  local curcontext="$curcontext" state line
-  typeset -A opt_args
 
-  _arguments -C \
-    "1:instances:($(gcloud compute instances list --format='value(name)'))" \
-    "2:zones:($(gcloud compute zones list --format='value(name)'))" \
-    "3:files:_files" \
-}
-
-compdef _gcloud_completions gcloud_start
-compdef _gcloud_completions gcloud_stop
-compdef _gcloud_completions gcloud_enter
-compdef _gcloud_completions gcloud_copy
-
-function bat_tail(){
-  local lines=${1:-10}
-  local file
-  if [[ -f $1 ]]; then
-    file=$1
-    lines=10
-  else
-    file=$2
-  fi
-  batcat --line-range $(expr $(wc -l < "$file") - $lines): "$file"
-}
-zle -N bat_tail
 
 # Function to run a Docker container with full paths for input and output directories
 function docker_script() {
@@ -188,13 +215,10 @@ alias tail=bat_tail
 alias dscript=docker_script
 alias pwf=pwd_with_file 
 alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
-
-alias dstart='docker run -it \
--e DISPLAY=$DISPLAY \
--v /tmp/.X11-unix:/tmp/.X11-unix \
---volume /home/santos/project/sandbox:/workspace/ --volume /home/santos/Documents/dotfiles/scripts/docker/_config/:/_config \
---name ros3 \
-custom-ros-humble-desktop2:latest'
+alias kls='jupyter kernelspec list'
+alias kstart=start_kernel
+alias knew=create_kernel
+alias krm=delete_kernel
 
 #Helpful Keybindings
 bindkey '^n' open_nvim

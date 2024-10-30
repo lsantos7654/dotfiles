@@ -1,5 +1,3 @@
-# Copyright [2023] Boston Dynamics AI Institute, Inc.
-#
 # Quick overview:
 # - dls: lists active & stopped containers
 # - dils: list images
@@ -55,7 +53,7 @@ function dzsh {
 			docker restart $1
 		fi
 		# docker exec -it $1 zsh
-		docker exec -w /workspaces/bdai -it --user $USER $1 /usr/bin/zsh
+		docker -it --user $USER $1 /usr/bin/zsh
 	fi
 }
 
