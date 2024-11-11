@@ -92,22 +92,22 @@ media_cover:subscribe("media_change", function(env)
 
     if drawing then
       animate_detail(true)
-      -- interrupt = interrupt + 1
-      -- sbar.delay(5, animate_detail)
+      interrupt = interrupt + 1
+      sbar.delay(5, animate_detail)
     else
       media_cover:set({ popup = { drawing = false } })
     end
   end
 end)
 
--- media_cover:subscribe("mouse.entered", function(env)
---   interrupt = interrupt + 1
---   animate_detail(true)
--- end)
---
--- media_cover:subscribe("mouse.exited", function(env)
---   animate_detail(false)
--- end)
+media_cover:subscribe("mouse.entered", function(env)
+  interrupt = interrupt + 1
+  animate_detail(true)
+end)
+
+media_cover:subscribe("mouse.exited", function(env)
+  animate_detail(false)
+end)
 
 media_cover:subscribe("mouse.clicked", function(env)
   media_cover:set({ popup = { drawing = "toggle" }})

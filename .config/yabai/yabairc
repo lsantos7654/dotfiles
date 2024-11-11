@@ -17,9 +17,9 @@ yabai -m config window_shadow off
 yabai -m config window_origin_display focused
 
 # Focus Settings
-yabai -m config focus_follows_window on        # Changed to on
+yabai -m config focus_follows_window off        # Changed to on
 yabai -m config focus_follows_space_windows on # Ensures focus on active window when switching spaces
-yabai -m config mouse_follows_focus on         # Added to help with focus
+yabai -m config mouse_follows_focus off         # Added to help with focus
 
 # Opacity Settings
 yabai -m config window_opacity on
@@ -40,12 +40,6 @@ yabai -m config bottom_padding 12
 yabai -m config left_padding 12
 yabai -m config right_padding 12
 yabai -m config window_gap 12
-
-#---------------------------------------------------------------
-# Signals
-#---------------------------------------------------------------
-# Focus window after it's moved to another space
-yabai -m signal --add event=window_moved action="yabai -m window --focus \$YABAI_WINDOW_ID"
 
 #---------------------------------------------------------------
 # Sketchybar Integration
