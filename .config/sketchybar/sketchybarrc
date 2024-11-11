@@ -19,26 +19,10 @@ ITEM_DIR="$HOME/.config/sketchybar/items"
 sketchybar --bar height=32 \
 	blur_radius=0 \
 	position=top \
-	sticky=off \
+	sticky=on \
 	padding_left=10 \
 	padding_right=10 \
 	color=0x00000000
-
-##### Changing Defaults #####
-# We now change some default values, which are applied to all further items.
-# For a full list of all available item properties see:
-# https://felixkratz.github.io/SketchyBar/config/items
-
-# sketchybar --default icon.font="Hack Nerd Font:Bold:17.0" \
-# 	icon.color=$WHITE \
-# 	label.font="Hack Nerd Font:Bold:14.0" \
-# 	label.color=$WHITE \
-# 	padding_left=5 \
-# 	padding_right=5 \
-# 	label.padding_left=4 \
-# 	label.padding_right=4 \
-# 	icon.padding_left=4 \
-# 	icon.padding_right=4
 
 ##### Changing Defaults #####
 # We now change some default values that are applied to all further items
@@ -46,10 +30,9 @@ sketchybar --bar height=32 \
 # https://felixkratz.github.io/SketchyBar/config/items
 
 sketchybar --default icon.font="Hack Nerd Font:Bold:12.0" \
-	icon.color=$WHITE \
+	icon.color=$ACCENT_COLOR\
 	label.font="Hack Nerd Font:Bold:12.0" \
-	label.color=$WHITE \
-	background.color=$ITEM_BG_COLOR \
+	label.color=$ACCENT_COLOR \
 	background.corner_radius=3 \
 	background.height=22 \
 	padding_left=3 \

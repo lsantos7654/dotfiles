@@ -16,10 +16,14 @@ yabai -m config window_topmost on
 yabai -m config window_shadow off
 yabai -m config window_origin_display focused
 
+# Window Animations
+yabai -m config window_animation_duration 0.15
+yabai -m config window_animation_easing ease_out_quad # Added easing function
+
 # Focus Settings
-yabai -m config focus_follows_window off        # Changed to on
+yabai -m config focus_follows_window off       # Changed to on
 yabai -m config focus_follows_space_windows on # Ensures focus on active window when switching spaces
-yabai -m config mouse_follows_focus off         # Added to help with focus
+yabai -m config mouse_follows_focus off        # Added to help with focus
 
 # Opacity Settings
 yabai -m config window_opacity on
