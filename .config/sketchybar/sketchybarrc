@@ -45,19 +45,19 @@ sketchybar --bar height=32 \
 # For a full list of all available item properties see:
 # https://felixkratz.github.io/SketchyBar/config/items
 
-sketchybar --default icon.font="Hack Nerd Font:Bold:14.0" \
+sketchybar --default icon.font="Hack Nerd Font:Bold:12.0" \
 	icon.color=$WHITE \
-	label.font="Hack Nerd Font:Bold:14.0" \
+	label.font="Hack Nerd Font:Bold:12.0" \
 	label.color=$WHITE \
 	background.color=$ITEM_BG_COLOR \
-	background.corner_radius=5 \
-	background.height=26 \
-	padding_left=5 \
-	padding_right=5 \
-	label.padding_left=4 \
-	label.padding_right=8 \
-	icon.padding_left=8 \
-	icon.padding_right=4
+	background.corner_radius=3 \
+	background.height=22 \
+	padding_left=3 \
+	padding_right=3 \
+	label.padding_left=2 \
+	label.padding_right=2 \
+	icon.padding_left=2 \
+	icon.padding_right=2
 
 # -- Left Side Items --
 source $ITEM_DIR/spaces.sh
@@ -68,6 +68,7 @@ source $ITEM_DIR/media.sh
 
 # -- Right Side Items --
 source $ITEM_DIR/calendar.sh
+source $ITEM_DIR/weather.sh
 source $ITEM_DIR/volume.sh
 source $ITEM_DIR/battery.sh
 source $ITEM_DIR/cpu.sh
