@@ -1,0 +1,57 @@
+#!/usr/bin/env sh
+
+# Load scripting addition
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+#---------------------------------------------------------------
+# Global Settings
+#---------------------------------------------------------------
+
+# Window Management Settings
+yabai -m config window_placement second_child
+yabai -m config split_ratio 0.50
+yabai -m config auto_balance off
+yabai -m config window_topmost on
+yabai -m config window_shadow off
+yabai -m config window_origin_display focused
+
+# Focus Settings
+yabai -m config focus_follows_window on        # Changed to on
+yabai -m config focus_follows_space_windows on # Ensures focus on active window when switching spaces
+yabai -m config mouse_follows_focus on         # Added to help with focus
+
+# Opacity Settings
+yabai -m config window_opacity on
+yabai -m config window_opacity_duration 0.0
+yabai -m config active_window_opacity 0.9
+yabai -m config normal_window_opacity 0.8
+
+#---------------------------------------------------------------
+# Space Settings
+#---------------------------------------------------------------
+
+# Layout
+yabai -m config layout bsp
+
+# Padding and Gaps
+yabai -m config top_padding 12
+yabai -m config bottom_padding 12
+yabai -m config left_padding 12
+yabai -m config right_padding 12
+yabai -m config window_gap 12
+
+#---------------------------------------------------------------
+# Signals
+#---------------------------------------------------------------
+# Focus window after it's moved to another space
+yabai -m signal --add event=window_moved action="yabai -m window --focus \$YABAI_WINDOW_ID"
+
+#---------------------------------------------------------------
+# Sketchybar Integration
+#---------------------------------------------------------------
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+
+# Debug (commented out by default)
+# yabai -m config debug_output on
