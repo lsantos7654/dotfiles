@@ -21,9 +21,10 @@ yabai -m config window_animation_duration 0.15
 yabai -m config window_animation_easing ease_out_quad # Added easing function
 
 # Focus Settings
-yabai -m config focus_follows_window off       # Changed to on
-yabai -m config focus_follows_space_windows on # Ensures focus on active window when switching spaces
-yabai -m config mouse_follows_focus off        # Added to help with focus
+# yabai -m config focus_follows_window on
+# yabai -m config focus_follows_space_windows on # Ensures focus on active window when switching spaces
+# yabai -m config mouse_follows_focus off        # Added to help with focus
+yabai -m config focus_follows_mouse autofocus
 
 # Opacity Settings
 yabai -m config window_opacity on
@@ -49,7 +50,7 @@ yabai -m config window_gap 12
 # Sketchybar Integration
 #---------------------------------------------------------------
 
-yabai -m config external_bar all:32:0
+yabai -m config external_bar all:10:0
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
 

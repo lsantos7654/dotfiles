@@ -6,11 +6,11 @@ for sid in "${SPACE_SIDS[@]}"; do
 	sketchybar --add space space.$sid left \
 		--set space.$sid space=$sid \
 		icon=$sid \
-		label.font="sketchybar-app-font:Regular:16.0" \
-		label.padding_right=20 \
+		label.font="sketchybar-app-font:Regular:12.0" \
+		label.padding_right=10 \
 		label.y_offset=-1 \
 		background.extending_left=3 \
-		background.extending_right=3 \
+		background.extending_right=0 \
 		background.color=$ITEM_BG_COLOR \
 		label.background.drawing=on \
 		label.background.color=$ITEM_BG_COLOR \
@@ -19,7 +19,7 @@ for sid in "${SPACE_SIDS[@]}"; do
 done
 
 sketchybar --add item space_separator left \
-	--set space_separator icon="􀆊" \
+	--set space_separator icon="" \
 	icon.color=$ACCENT_COLOR \
 	icon.padding_left=4 \
 	label.drawing=off \

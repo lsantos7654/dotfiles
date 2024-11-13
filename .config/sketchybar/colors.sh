@@ -2,16 +2,15 @@
 
 export WHITE=0xffffffff
 
-# -- Teal Scheme --
-# -- Teal Scheme --
-export BAR_COLOR=0x99001f30     # Changed from 0xff to 0x99 for transparency
-export ITEM_BG_COLOR=0x99003547 # Changed from 0xff to 0x99 for transparency
-export ACCENT_COLOR=0xff2cf9ed  # Kept solid for better visibility
+# # -- Teal Scheme --
+# export BAR_COLOR=0x99001f30     # Changed from 0xff to 0x99 for transparency
+# export ITEM_BG_COLOR=0x99003547 # Changed from 0xff to 0x99 for transparency
+# export ACCENT_COLOR=0xff2cf9ed  # Kept solid for better visibility
 
-# -- Gray Scheme --
-# export BAR_COLOR=0xff101314
-# export ITEM_BG_COLOR=0xff353c3f
-# export ACCENT_COLOR=0xffffffff
+-- Gray Scheme --
+export BAR_COLOR=0xff101314
+export ITEM_BG_COLOR=0xff353c3f
+export ACCENT_COLOR=0xffffffff
 
 # -- Purple Scheme --
 # export BAR_COLOR=0xff140c42

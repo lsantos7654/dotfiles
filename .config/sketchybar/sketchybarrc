@@ -16,7 +16,7 @@ ITEM_DIR="$HOME/.config/sketchybar/items"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar height=32 \
+sketchybar --bar height=28 \
 	blur_radius=0 \
 	position=top \
 	sticky=on \
@@ -51,7 +51,7 @@ source $ITEM_DIR/media.sh
 
 # -- Right Side Items --
 source $ITEM_DIR/calendar.sh
-source $ITEM_DIR/weather.sh
+# source $ITEM_DIR/weather.sh
 source $ITEM_DIR/volume.sh
 source $ITEM_DIR/battery.sh
 source $ITEM_DIR/cpu.sh
