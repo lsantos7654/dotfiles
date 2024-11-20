@@ -1,11 +1,41 @@
 #!/bin/bash
 
-# Modified weather.sh plugin to be more compact
-update_weather() {
-	# Using wttr.in with a more compact format - just temp and condition icon
-	weather_data=$(curl -s "wttr.in/?format=%t")
+# Weather Icons Map
+get_weather_icon() {
+	condition="$1"
+	case "$condition" in
+	"☀️" | "Clear")
+		echo "󰖙" # Clear/Sunny
+		;;
+	"⛅️" | "🌤" | "Partly cloudy")
+		echo "󰖕" # Partly Cloudy
+		;;
+	"☁️" | "Cloudy" | "Overcast")
+		echo "󰖐" # Cloudy
+		;;
+	"🌧" | "Rain" | "Light rain" | "Drizzle")
+		echo "󰖗" # Rain
+		;;
+	"⛈" | "Storm" | "Thunder" | "Heavy rain")
+		echo "󰖖" # Storm
+		;;
+	"🌨" | "Snow" | "Light snow" | "Heavy snow")
+		echo "󰼶" # Snow
+		;;
+	"🌫" | "Mist" | "Fog")
+		echo "󰖑" # Fog
+		;;
+	*)
+		echo "󰖐" # Default cloudy icon
+		;;
+	esac
+}
 
-	if [ $? -eq 0 ]; then
+update_weather() {
+	# %t = temperature, %C = weather condition text
+	weather_data=$(curl -s "wttr.in/?format=%f|%C")
+
+	if [ $? -eq 0 ] && [ ! -z "$weather_data" ]; then
 		echo "$weather_data"
 	else
 		echo "N/A"
@@ -13,7 +43,11 @@ update_weather() {
 }
 
 WEATHER=$(update_weather)
-# Remove the space between the + and degree symbol to make it more compact
-WEATHER=$(echo "$WEATHER" | sed 's/+//' | sed 's/ //g')
-
-sketchybar --set $NAME label="$WEATHER" icon="󰖐"
+if [ "$WEATHER" != "N/A" ]; then
+	TEMP=$(echo "$WEATHER" | cut -d'|' -f1 | sed 's/+//' | sed 's/ //g')
+	CONDITION=$(echo "$WEATHER" | cut -d'|' -f2)
+	ICON=$(get_weather_icon "$CONDITION")
+	sketchybar --set $NAME label="$TEMP" icon="$ICON"
+else
+	sketchybar --set $NAME label="N/A" icon="󰖐"
+fi
