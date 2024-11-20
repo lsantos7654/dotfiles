@@ -4,6 +4,24 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Sandbox",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": ["right_command", "option", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Browser Window Space Movement",
                         "manipulators": [
                             {
@@ -256,45 +274,6 @@
                                     "modifiers": { "mandatory": ["left_command"] }
                                 },
                                 "to": [{ "shell_command": "open ~" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Sandbox",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": { "mandatory": ["left_command", "shift"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "m",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "h",
-                                        "modifiers": ["right_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "w",
-                                        "modifiers": ["right_command", "option", "shift"]
-                                    }
-                                ],
                                 "type": "basic"
                             }
                         ]

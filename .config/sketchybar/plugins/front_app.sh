@@ -24,7 +24,7 @@ case "$SENDER" in
 				label="" \
 				icon.font="sketchybar-app-font:Regular:14.0" \
 				icon.padding_right=4 \
-				padding_right=4
+				padding_right=-4
 
 			if [ "$has_focus" = "true" ]; then
 				sketchybar --set "$ITEM_NAME" icon.color=$BLUE
