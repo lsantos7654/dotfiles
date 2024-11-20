@@ -15,5 +15,5 @@ if [ "$SENDER" = "space_windows_change" ]; then
 
 	sketchybar --set space.$space label="$icon_strip" \
 		label.background.drawing=on \
-		label.background.color=$BACKGROUND_1
+		label.background.color=$TRANSPARENT_COLOR
 fi

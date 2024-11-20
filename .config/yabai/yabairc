@@ -50,9 +50,9 @@ yabai -m config window_gap 12
 # Sketchybar Integration
 #---------------------------------------------------------------
 
-yabai -m config external_bar all:10:0
-yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+# yabai -m config external_bar all:10:0
+# yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+# yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
 
 # Debug (commented out by default)
 # yabai -m config debug_output on

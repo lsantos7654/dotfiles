@@ -9,13 +9,13 @@ case "$SENDER" in
 *)
 	if [ $SELECTED = true ]; then
 		sketchybar --set $NAME background.drawing=on \
-			background.color=$BACKGROUND_1 \
-			label.color=$LABEL_COLOR \
-			icon.color=$BLUE
+			background.color=$ACCENT_COLOR \
+			label.color=$BAR_COLOR \
+			icon.color=$BAR_COLOR
 	else
 		sketchybar --set $NAME background.drawing=off \
-			label.color=$LABEL_COLOR \
-			icon.color=$BLUE
+			label.color=0xff2cf9ed \
+			icon.color=$ACCENT_COLOR
 	fi
 	;;
 esac

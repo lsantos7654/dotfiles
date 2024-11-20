@@ -63,7 +63,10 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["^org\\.mozilla\\.firefox$"]
+              "bundle_identifiers": [
+                "^org\\.mozilla\\.firefox$",
+                ".*firefoxpwa.*"
+              ]
             }
           ]
         }
@@ -849,7 +852,8 @@
                 "^com\\.microsoft\\.edgemac",
                 "^com\\.apple\\.Safari",
                 "^com\\.google\\.Chrome",
-                "^org\\.chromium\\.Chromium"
+                "^org\\.chromium\\.Chromium",
+                ".*firefoxpwa.*"
               ],
               "type": "frontmost_application_if"
             }
@@ -889,7 +893,8 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "^org\\.mozilla\\.firefox$",
-                "^org\\.chromium\\.Chromium"
+                "^org\\.chromium\\.Chromium",
+                ".*firefoxpwa.*"
               ]
             }
           ]
@@ -912,7 +917,8 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "^org\\.mozilla\\.firefox$",
-                "^org\\.chromium\\.Chromium"
+                "^org\\.chromium\\.Chromium",
+                ".*firefoxpwa.*"
               ]
             }
           ]

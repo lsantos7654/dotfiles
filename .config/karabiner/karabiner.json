@@ -4,6 +4,142 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Browser Window Space Movement",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org\\.mozilla\\.firefox$",
+                                            "^org\\.chromium\\.Chromium",
+                                            ".*firefoxpwa.*"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["right_command", "left_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space prev --focus" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org\\.mozilla\\.firefox$",
+                                            "^org\\.chromium\\.Chromium",
+                                            ".*firefoxpwa.*"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["right_command", "left_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space next --focus" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "caps_lock is right command",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org\\.mozilla\\.firefox",
+                                            "^com\\.microsoft\\.edgemac",
+                                            "^com\\.apple\\.Safari",
+                                            "^com\\.google\\.Chrome",
+                                            "^org\\.chromium\\.Chromium",
+                                            ".*firefoxpwa.*"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_command" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Firefox Tab Navigation",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org\\.mozilla\\.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["right_command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org\\.mozilla\\.firefox$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["option", "shift"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["right_command", "option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org\\.mozilla\\.firefox$",
+                                            ".*firefoxpwa.*"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": ["right_command", "shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Yabai controls",
                         "manipulators": [
                             {
@@ -157,113 +293,6 @@
                                     {
                                         "key_code": "w",
                                         "modifiers": ["right_command", "option", "shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Browser Window Space Movement",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^org\\.mozilla\\.firefox$",
-                                            "^org\\.chromium\\.Chromium"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["right_command", "left_command"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space prev --focus" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^org\\.mozilla\\.firefox$",
-                                            "^org\\.chromium\\.Chromium"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["right_command", "left_command"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space next --focus" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Firefox Tab Navigation",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^org\\.mozilla\\.firefox$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["right_command", "option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^org\\.mozilla\\.firefox$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["option", "shift"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["right_command", "option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^org\\.mozilla\\.firefox$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "q",
-                                    "modifiers": { "mandatory": ["command"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "w",
-                                        "modifiers": ["right_command", "shift"]
                                     }
                                 ],
                                 "type": "basic"
@@ -693,31 +722,6 @@
                                     "modifiers": { "mandatory": ["left_command", "shift"] }
                                 },
                                 "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --space 10" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "caps_lock is right command",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^org\\.mozilla\\.firefox",
-                                            "^com\\.microsoft\\.edgemac",
-                                            "^com\\.apple\\.Safari",
-                                            "^com\\.google\\.Chrome",
-                                            "^org\\.chromium\\.Chromium"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "right_command" }],
                                 "type": "basic"
                             }
                         ]

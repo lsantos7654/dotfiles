@@ -8,9 +8,8 @@ for sid in "${SPACE_SIDS[@]}"; do
 		icon=$sid \
 		label.font="sketchybar-app-font:Regular:12.0" \
 		label.padding_right=10 \
-		label.padding_left=0 \
 		label.y_offset=-1 \
-		background.extending_left=0 \
+		background.extending_left=3 \
 		background.extending_right=0 \
 		background.color=$ITEM_BG_COLOR \
 		label.background.drawing=on \
