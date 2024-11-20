@@ -33,4 +33,4 @@ sketchybar --add item separator left \
 # Then add the front_app
 sketchybar --add item front_app left \
 	--set front_app "${front_app[@]}" \
-	--subscribe front_app front_app_switched
+	--subscribe front_app front_app_switched space_windows_change

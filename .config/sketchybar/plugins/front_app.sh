@@ -3,7 +3,7 @@
 source "$CONFIG_DIR/colors.sh"
 
 case "$SENDER" in
-"front_app_switched" | "window_focus" | "space_change")
+"front_app_switched" | "window_focus" | "space_change" | "space_windows_change")
 	WINDOWS=$(yabai -m query --windows --space)
 	sketchybar --remove '/window_.*/'
 
