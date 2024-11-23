@@ -47,12 +47,7 @@ yabai -m config right_padding 12
 yabai -m config window_gap 12
 
 #---------------------------------------------------------------
-# Sketchybar Integration
+# JankyBorders
 #---------------------------------------------------------------
 
-# yabai -m config external_bar all:10:0
-# yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-# yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-
-# Debug (commented out by default)
-# yabai -m config debug_output on
+borders active_color=0xff2cf9ed inactive_color=0xff494d64 width=3.0 &
