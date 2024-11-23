@@ -322,7 +322,7 @@
           },
           "to": [
             {
-              "shell_command": "/opt/homebrew/bin/yabai -m window --focus west"
+              "shell_command": "/Users/santos/.config/yabai/scripts/smart_focus.sh west"
             }
           ]
         },
@@ -364,7 +364,7 @@
           },
           "to": [
             {
-              "shell_command": "/opt/homebrew/bin/yabai -m window --focus east"
+              "shell_command": "/Users/santos/.config/yabai/scripts/smart_focus.sh east"
             }
           ]
         },
@@ -379,7 +379,7 @@
           },
           "to": [
             {
-              "shell_command": "/opt/homebrew/bin/yabai -m window --warp west"
+              "shell_command": "/Users/santos/.config/yabai/scripts/smart_warp.sh west"
             }
           ]
         },
@@ -421,7 +421,7 @@
           },
           "to": [
             {
-              "shell_command": "/opt/homebrew/bin/yabai -m window --warp east"
+              "shell_command": "/Users/santos/.config/yabai/scripts/smart_warp.sh east"
             }
           ]
         },

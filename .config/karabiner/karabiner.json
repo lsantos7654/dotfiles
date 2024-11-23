@@ -4,6 +4,127 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Yabai controls",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com.apple.finder"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Close current window (Finder only)",
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --close" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Window focus",
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "shell_command": "/Users/santos/.config/yabai/scripts/smart_focus.sh west" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus south" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus north" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "shell_command": "/Users/santos/.config/yabai/scripts/smart_focus.sh east" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Window warp",
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["left_command", "option"] }
+                                },
+                                "to": [{ "shell_command": "/Users/santos/.config/yabai/scripts/smart_warp.sh west" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["left_command", "option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --warp south" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["left_command", "option"] }
+                                },
+                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --warp north" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["left_command", "option"] }
+                                },
+                                "to": [{ "shell_command": "/Users/santos/.config/yabai/scripts/smart_warp.sh east" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Applications",
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "shell_command": "open -n -a kitty" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "shell_command": "open -n -a firefox" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "shell_command": "open -n -a claude" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [{ "shell_command": "open ~" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Sandbox",
                         "manipulators": [
                             {
@@ -153,127 +274,6 @@
                                         "modifiers": ["right_command", "shift"]
                                     }
                                 ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Yabai controls",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com.apple.finder"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "Close current window (Finder only)",
-                                "from": {
-                                    "key_code": "q",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --close" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Window focus",
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus west" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "j",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus south" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "k",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus north" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --focus east" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Window warp",
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["left_command", "option"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --warp west" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "j",
-                                    "modifiers": { "mandatory": ["left_command", "option"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --warp south" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "k",
-                                    "modifiers": { "mandatory": ["left_command", "option"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --warp north" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["left_command", "option"] }
-                                },
-                                "to": [{ "shell_command": "/opt/homebrew/bin/yabai -m window --warp east" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Applications",
-                                "from": {
-                                    "key_code": "t",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [{ "shell_command": "open -n -a kitty" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [{ "shell_command": "open -n -a firefox" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [{ "shell_command": "open -n -a claude" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "e",
-                                    "modifiers": { "mandatory": ["left_command"] }
-                                },
-                                "to": [{ "shell_command": "open ~" }],
                                 "type": "basic"
                             }
                         ]
