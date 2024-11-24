@@ -94,7 +94,7 @@ function bat_tail(){
   else
     file=$2
   fi
-  batcat --line-range $(expr $(wc -l < "$file") - $lines): "$file"
+  bat --line-range $(expr $(wc -l < "$file") - $lines): "$file"
 }
 zle -N bat_tail
 
@@ -216,7 +216,7 @@ alias gzsh=gcloud_enter
 alias gcp=gcloud_copy
 alias fcd=fuzzycd
 alias cdl=follow_link
-alias tail=bat_tail
+# alias tail=bat_tail
 alias dscript=docker_script
 alias pwf=pwd_with_file 
 alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
