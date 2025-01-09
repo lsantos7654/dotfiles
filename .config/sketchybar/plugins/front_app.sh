@@ -14,6 +14,15 @@ case "$SENDER" in
 
 	# Loop through each visible space
 	while IFS= read -r space; do
+		# Check first-window value for the space
+		SPACE_INFO=$(yabai -m query --spaces | jq -r ".[] | select(.index==$space)")
+		FIRST_WINDOW=$(echo "$SPACE_INFO" | jq -r '."first-window"')
+
+		# Skip if first-window is 0
+		if [ "$FIRST_WINDOW" = "0" ]; then
+			continue
+		fi
+
 		WINDOWS=$(yabai -m query --windows --space "$space")
 
 		while IFS= read -r window; do
