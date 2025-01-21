@@ -1,25 +1,13 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.local/bin:$PATH
-export BDAI=$HOME/projects/bdai
 export EDITOR=nvim
 source ~/Documents/dotfiles/ubuntu_specific/docker_functions.bash
-# source ~/Documents/dotfiles/scripts/docker/_config/docker_functions.bash
 
-export SPOTIPY_CLIENT_ID='ee5a68fb8c39415e989da683f6faeaec'
-export SPOTIPY_CLIENT_SECRET='20669c7a756e4eb399d032c4deb9a9eb'
-export SPOTIPY_REDIRECT_URI='http://localhost:8888/callback'
-
-export ROS_DOMAIN_ID=30
 export POWERLEVEL9K_COMMAND_EXECUTION_TIME=true
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -34,13 +22,6 @@ plugins=(
   fzf
 )
 source $ZSH/oh-my-zsh.sh
-
-function bdai() {
-  $BDAI/core/bdai_cli/src/bdai_cli/commands/bdai_cmd.py "$@"
-  # source $BDAI/projects/_config/misc/setup.zsh 
-  # eval "$(register-python-argcomplete3 ros2)"
-  # eval "$(register-python-argcomplete3 colcon)"
-}
 
 #Docker Completion
 function _docker_all() {
@@ -68,32 +49,10 @@ function fuzzycd() {
   fi
 }
 
-# Graphite Completion
-_gt_yargs_completions()
-{
-    local cur_word args type_list
-
-    cur_word="${COMP_WORDS[COMP_CWORD]}"
-    args=("${COMP_WORDS[@]}")
-
-    # ask yargs to generate completions.
-    type_list=$(gt --get-yargs-completions "${args[@]}")
-
-    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
-
-    # if no match was found, fall back to filename completion
-    if [ ${#COMPREPLY[@]} -eq 0 ]; then
-      COMPREPLY=()
-    fi
-
-    return 0
-}
-complete -o bashdefault -o default -F _gt_yargs_completions gt
-
 #Functions
 
 function open_nvim() {
-  nvim
+  nvim .
 }
 zle -N open_nvim
 
@@ -110,20 +69,12 @@ alias la='eza -lha --icons=auto --sort=name --group-directories-first' # long li
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='tree -h --du ./'
 alias tls='tmux ls'
-alias n='nvim'
 alias tkill='tmux kill-session -t '
 alias fcd=fuzzycd
 alias re='glow README.md'
 alias cpr='rsync --recursive --progress'
 alias cat=batcat --paging=never
 alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia glmark2'
-
-alias dstart='docker run -it \
--e DISPLAY=$DISPLAY \
--v /tmp/.X11-unix:/tmp/.X11-unix \
---volume /home/santos/project/sandbox:/workspace/ --volume /home/santos/Documents/dotfiles/scripts/docker/_config/:/_config \
---name ros3 \
-custom-ros-humble-desktop2:latest'
 
 #Helpful Keybindings
 bindkey '^n' open_nvim
