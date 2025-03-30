@@ -291,7 +291,7 @@
       "description": "Yabai controls",
       "manipulators": [
         {
-          "description": "Close current window (Finder only)",
+          "description": "Close current window",
           "type": "basic",
           "from": {
             "key_code": "q",
@@ -307,7 +307,10 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
+              "bundle_identifiers": [
+								"^com.apple.finder",
+								"^com.apple.Preview"
+							]
             }
           ]
         },

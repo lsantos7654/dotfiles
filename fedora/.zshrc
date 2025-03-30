@@ -196,7 +196,10 @@ compdef _docker_script_completions docker_script
 zle -N docker_script
 
 # Helpful aliases
-alias  l='eza -lh  --icons=auto' # long list
+alias watch="watch "
+alias python='python3'
+alias pip='uv pip'
+alias l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
 alias la='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto' # long list dirs
@@ -230,7 +233,7 @@ alias gpull='git stash && git pull && git stash pop'
 bindkey '^n' open_nvim
 bindkey "^p" clear_screen
 bindkey "^[h" backward-word
-bindkey "^[l" forward-word
+bindkey "^[l" vi-forward-word-end
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
