@@ -1,13 +1,21 @@
 #!/bin/bash
 
-if [ "$SENDER" = "space_windows_change" ]; then
+case "$SENDER" in
+"front_app_switched" | "space_change" | "space_windows_change" | "display_change")
 	space="$(echo "$INFO" | jq -r '.space')"
-	# Get only non-minimized windows by checking "is-minimized": false
+
+	# If space is empty in the event info, get the current space
+	if [ -z "$space" ] || [ "$space" = "null" ]; then
+		space=$(yabai -m query --spaces --space | jq -r '.index')
+	fi
+
+	# Get windows in the space
 	WINDOWS="$(yabai -m query --windows --space $space)"
 
 	icon_strip=""
 	has_windows=false
 
+	# Check if WINDOWS is empty or just contains empty brackets
 	if [ -n "$WINDOWS" ] && [ "$WINDOWS" != "[]" ]; then
 		while IFS= read -r window; do
 			app=$(echo "$window" | jq -r '.app')
@@ -21,11 +29,14 @@ if [ "$SENDER" = "space_windows_change" ]; then
 	fi
 
 	# If no windows were added or the space is empty
-	if [ "$has_windows" = false ] || [ -z "$icon_strip" ]; then
+	if [ "$has_windows" = false ]; then
 		icon_strip=" —"
 	fi
 
+	# Force update the label even if it appears unchanged
 	sketchybar --set space.$space label="$icon_strip" \
 		label.background.drawing=on \
-		label.background.color=$BACKGROUND_1
-fi
+		label.background.color=$BACKGROUND_1 \
+		label.drawing=on
+
+esac

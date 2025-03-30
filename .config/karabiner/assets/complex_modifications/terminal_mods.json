@@ -45,30 +45,6 @@
               "bundle_identifiers": ["^org\\.mozilla\\.firefox$"]
             }
           ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "q",
-            "modifiers": {
-              "mandatory": ["command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "w",
-              "modifiers": ["right_command", "shift"]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^org\\.mozilla\\.firefox$",
-                ".*firefoxpwa.*"
-              ]
-            }
-          ]
         }
       ]
     },
@@ -309,7 +285,9 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
 								"^com.apple.finder",
-								"^com.apple.Preview"
+								"^com.apple.Preview",
+                "^org\\.mozilla\\.firefox$",
+                ".*firefoxpwa.*"
 							]
             }
           ]
