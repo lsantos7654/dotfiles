@@ -1,9 +1,0 @@
-setup.py
-spotify_like/__init__.py
-spotify_like/main.py
-spotify_like.egg-info/PKG-INFO
-spotify_like.egg-info/SOURCES.txt
-spotify_like.egg-info/dependency_links.txt
-spotify_like.egg-info/entry_points.txt
-spotify_like.egg-info/requires.txt
-spotify_like.egg-info/top_level.txt

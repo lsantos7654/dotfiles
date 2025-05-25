@@ -1,2 +1,0 @@
-[console_scripts]
-spotify_like = spotify_like.main:like_current_song
