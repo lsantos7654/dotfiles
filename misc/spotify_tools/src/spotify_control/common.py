@@ -1,9 +1,15 @@
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
 import os
+
+import spotipy
+from dotenv import load_dotenv
+from spotipy.oauth2 import SpotifyOAuth
 
 
 def get_spotify_client():
+    # Load environment variables from .env file
+    env_path = os.path.join(os.getenv("HOME"), ".spotify", ".env")
+    load_dotenv(env_path)
+
     scope = "user-read-playback-state user-modify-playback-state"
 
     token_cache_path = os.path.join(
