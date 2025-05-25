@@ -2,6 +2,53 @@
   "title": "apps",
   "rules": [
     {
+      "description": "Spotify Controls",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "equal_sign",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "spotify-volume-up"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "hyphen",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "spotify-volume-down"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "spotify-play-pause"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "Firefox Tab Navigation",
       "manipulators": [
         {
