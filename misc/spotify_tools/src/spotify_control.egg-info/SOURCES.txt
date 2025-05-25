@@ -2,6 +2,7 @@ README.md
 setup.py
 src/spotify_control/__init__.py
 src/spotify_control/common.py
+src/spotify_control/like_song.py
 src/spotify_control/next_song.py
 src/spotify_control/play_pause.py
 src/spotify_control/previous_song.py

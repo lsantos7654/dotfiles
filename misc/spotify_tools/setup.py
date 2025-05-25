@@ -18,6 +18,7 @@ setup(
             "spotify-play-pause=spotify_control.play_pause:main",
             "spotify-volume-up=spotify_control.volume_up:main",
             "spotify-volume-down=spotify_control.volume_down:main",
+            "spotify-like=spotify_control.like_song:main",  # Add this line
             "spotify-mpris=spotify_control.spotify_mpris:main",
         ],
     },

@@ -10,7 +10,8 @@ def get_spotify_client():
     env_path = os.path.join(os.getenv("HOME"), ".spotify", ".env")
     load_dotenv(env_path)
 
-    scope = "user-read-playback-state user-modify-playback-state"
+    # Add user-library-modify scope
+    scope = "user-read-playback-state user-modify-playback-state user-library-modify"
 
     token_cache_path = os.path.join(
         os.getenv("HOME"), ".spotify", "spotify_token-cache"

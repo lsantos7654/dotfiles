@@ -45,6 +45,48 @@
               "shell_command": "/Users/santos/.local/bin/spotify-play-pause"
             }
           ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "close_bracket",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/Users/santos/.local/bin/spotify-like"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/Users/santos/.local/bin/spotify-next"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "/Users/santos/.local/bin/spotify-previous"
+            }
+          ]
         }
       ]
     },
