@@ -11,9 +11,7 @@ export EDITOR=nvim
 source ~/Documents/dotfiles/ubuntu_specific/docker_functions.bash
 export XDG_CURRENT_DESKTOP=KDE
 
-export SPOTIPY_CLIENT_ID='ee5a68fb8c39415e989da683f6faeaec'
-export SPOTIPY_CLIENT_SECRET='20669c7a756e4eb399d032c4deb9a9eb'
-export SPOTIPY_REDIRECT_URI='http://localhost:8888/callback'
+source ~/.spotify/.env
 
 export ROS_DOMAIN_ID=30
 export POWERLEVEL9K_COMMAND_EXECUTION_TIME=true
@@ -48,7 +46,7 @@ function _docker_on() {
 }
 compctl -K _docker_all drm
 compctl -K _docker_on dkill
-compctl -K _docker_all drunning 
+compctl -K _docker_all drunning
 compctl -K _docker_all dzsh
 
 #Jupyter
@@ -162,10 +160,10 @@ function gcloud_copy() {
  # Get the base name of the file or directory
   local base_name
   base_name=$(basename "$3")
-  
-  
+
+
   # Execute the command
-  gcloud compute scp --recurse "$full_path" "lsantos_theaiinstitute_com@$1:/home/lsantos_theaiinstitute_com/projects/bdai/recordings/$base_name" --zone="$2" 
+  gcloud compute scp --recurse "$full_path" "lsantos_theaiinstitute_com@$1:/home/lsantos_theaiinstitute_com/projects/bdai/recordings/$base_name" --zone="$2"
 }
 
 function gcloud_enter() {
@@ -221,7 +219,7 @@ alias fcd=fuzzycd
 alias cdl=follow_link
 # alias tail=bat_tail
 alias dscript=docker_script
-alias pwf=pwd_with_file 
+alias pwf=pwd_with_file
 alias gpu='__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia'
 alias kls='jupyter kernelspec list'
 alias kstart=start_kernel
