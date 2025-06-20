@@ -11,6 +11,7 @@ export EDITOR=nvim
 source ~/Documents/dotfiles/ubuntu_specific/docker_functions.bash
 export XDG_CURRENT_DESKTOP=KDE
 
+source ~/.env
 source ~/.spotify/.env
 
 export ROS_DOMAIN_ID=30
